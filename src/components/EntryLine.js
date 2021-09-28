@@ -1,8 +1,13 @@
 import React from 'react';
-import {Segment, Grid, Icon } from 'semantic-ui-react';
+import { Fragment } from 'react';
+import { useState } from 'react/cjs/react.development';
+import {Segment, Grid, Icon} from 'semantic-ui-react';
+import ModalEdit from './ModalEdit';
 
-function EntryLine ({description, value, isExpense = false}) {
+function EntryLine ({id, description, value, isExpense = false, deleteEntry}) {
+    const [isOpen, setIsOpen] = useState(false);
     return (
+        <Fragment > 
         <Segment color={isExpense ? 'red' : 'green'}>
             <Grid columns={3} textAlign="right">
                 <Grid.Row>
@@ -11,12 +16,14 @@ function EntryLine ({description, value, isExpense = false}) {
                     </Grid.Column>
                     <Grid.Column width={3} textAlign="right">{value.toString()}</Grid.Column>
                     <Grid.Column width={3}>
-                        <Icon name="edit" bordered />
-                        <Icon name="trash" bordered/>
+                        <Icon name="edit" bordered onClick={() => setIsOpen(true)}/>
+                        <Icon name="trash" bordered onClick={() => deleteEntry(id)}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
       </Segment>
+      <ModalEdit isOpen={isOpen} setIsOpen={setIsOpen}/>
+      </Fragment>
     )
 }
 

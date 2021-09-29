@@ -38,4 +38,4 @@ function EntryForm({
     )
 }
 
-export default EntryForm
+export default EntryForm;

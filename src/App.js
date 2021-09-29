@@ -19,6 +19,7 @@ function App() {
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
+
   useEffect ( () => {
     if(!isOpen && entryId){
       const index = entries.findIndex(entry => entry.id === entryId);
@@ -28,8 +29,8 @@ function App() {
       newEntries[index].isExpense = isExpense;
       setEntries(newEntries);
       resetEntry();
-
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   useEffect(() => {
